@@ -13,6 +13,6 @@ mongoose
     });
   })
   .catch((error) => {
-    console.log(error.message);
+    console.log(`Error in DB connection ${error}`);
     process.exit(1);
   });
