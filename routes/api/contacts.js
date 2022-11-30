@@ -3,11 +3,11 @@ const express = require("express");
 const router = express.Router();
 const { validateBody, isValidId } = require("../../middlewares");
 const { addSchema, favoriteSchema } = require("../../schemas/validateSchema");
-const ctrls = require("../../controllers/index");
+const ctrls = require("../../controllers/");
 
 const { ctrlWrapper } = require("../../helpers");
-
-router.get("/", ctrlWrapper(ctrls.listContacts));
+console.log(ctrls.getContactById());
+router.get("/", ctrlWrapper(ctrls.getAllContacts));
 router.get("/:contactId", isValidId, ctrlWrapper(ctrls.getContactById));
 router.post("/", validateBody(addSchema), ctrlWrapper(ctrls.addContact));
 router.delete("/:contactId", isValidId, ctrlWrapper(ctrls.removeContact));
