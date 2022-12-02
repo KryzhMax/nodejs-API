@@ -1,7 +1,7 @@
-const { Contact } = require("../../models/contact");
+const Contact = require("../../models/contact");
 const { errorReq } = require("../../helpers/errorReq");
 
-const removeContact = async (req, res, _) => {
+const removeContact = async (req, res) => {
   const { contactId } = req.params;
   const query = Contact.findByIdAndRemove(contactId);
 

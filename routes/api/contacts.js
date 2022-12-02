@@ -6,7 +6,7 @@ const { addSchema, favoriteSchema } = require("../../schemas/validateSchema");
 const ctrls = require("../../controllers/");
 
 const { ctrlWrapper } = require("../../helpers");
-console.log(ctrls.getContactById());
+// console.log(ctrls.getAllContacts());
 router.get("/", ctrlWrapper(ctrls.getAllContacts));
 router.get("/:contactId", isValidId, ctrlWrapper(ctrls.getContactById));
 router.post("/", validateBody(addSchema), ctrlWrapper(ctrls.addContact));
