@@ -4,6 +4,7 @@ const User = require("../../models/user");
 const { errorReq } = require("../../helpers/");
 
 const register = async (req, res) => {
+  console.log(req.body);
   const { name, email, password, subscription } = req.body;
   const user = await User.findOne({ email });
   if (user) {
