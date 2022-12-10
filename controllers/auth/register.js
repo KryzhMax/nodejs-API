@@ -4,7 +4,6 @@ const User = require("../../models/user");
 const { errorReq } = require("../../helpers/");
 
 const register = async (req, res) => {
-  console.log(req.body);
   const { name, email, password, subscription } = req.body;
   const user = await User.findOne({ email });
   if (user) {
@@ -20,6 +19,7 @@ const register = async (req, res) => {
     subscription,
   });
   res.status(201).json({
+    name: newUser.name,
     email: newUser.email,
     subscription,
   });

@@ -10,6 +10,7 @@ const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   const passCompare = await bcrypt.compare(password, user.password);
+  console.log(passCompare);
   const payload = { id: user._id };
 
   if (!user || !passCompare) {
@@ -17,8 +18,7 @@ const login = async (req, res) => {
   }
 
   const token = await jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
-  await User.findByIdAndUpdate(payload, { token });
-  //user._id?
+  await User.findByIdAndUpdate(user._id, { token });
   res.json({ token });
 };
 

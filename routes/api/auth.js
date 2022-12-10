@@ -12,6 +12,7 @@ router.post(
   validateBody(registerSchema),
   ctrlWrapper(ctrls.register)
 );
+
 router.post("/login", validateBody(loginSchema), ctrlWrapper(ctrls.login));
 
 router.get("/current", authenticate, ctrlWrapper(ctrls.getCurrent));
