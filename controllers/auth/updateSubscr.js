@@ -2,8 +2,6 @@ const { errorReq } = require("../../helpers/");
 const User = require("../../models/user");
 
 const updateSubscr = async (req, res) => {
-  console.log(req.body);
-  console.log(req.user);
   const { _id, email, token } = req.user;
   const { subscription } = req.body;
 
