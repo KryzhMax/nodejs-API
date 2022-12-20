@@ -21,9 +21,14 @@ const registerSchema = Joi.object({
     .messages({ "string.min": "Insert at least 8 symbols" }),
   subscription: Joi.string().required(),
 });
+
 const loginSchema = Joi.object({
   email: Joi.string().required(),
   password: Joi.string().min(8).required(),
+});
+
+const verifySchema = Joi.object({
+  email: Joi.string().required(),
 });
 
 module.exports = {
@@ -31,4 +36,5 @@ module.exports = {
   favoriteSchema,
   registerSchema,
   loginSchema,
+  verifySchema,
 };

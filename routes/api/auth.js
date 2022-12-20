@@ -5,7 +5,11 @@ const {
   authenticate,
   uploadAvatar,
 } = require("../../middlewares");
-const { loginSchema, registerSchema } = require("../../schemas/validateSchema");
+const {
+  loginSchema,
+  registerSchema,
+  verifySchema,
+} = require("../../schemas/validateSchema");
 const { ctrlWrapper } = require("../../helpers");
 const ctrls = require("../../controllers/auth");
 
@@ -15,6 +19,14 @@ router.post(
   "/signup",
   validateBody(registerSchema),
   ctrlWrapper(ctrls.register)
+);
+
+router.get("/verify/:verificationToken", ctrlWrapper(ctrls.verifyEmail));
+
+router.post(
+  "/verify/",
+  validateBody(verifySchema),
+  ctrlWrapper(ctrls.resendEmail)
 );
 
 router.post("/login", validateBody(loginSchema), ctrlWrapper(ctrls.login));
