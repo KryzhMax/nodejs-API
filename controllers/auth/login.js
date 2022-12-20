@@ -10,11 +10,13 @@ const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   const passCompare = await bcrypt.compare(password, user.password);
-  console.log(passCompare);
   const payload = { id: user._id };
 
   if (!user || !passCompare) {
     throw errorReq(400);
+  }
+  if (!user.verify) {
+    throw errorReq(400, "Email is not verified");
   }
 
   const token = await jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
